@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image } from 'react-native';
+import { View, Image, Text, StyleSheet } from 'react-native';
 import axios from 'axios';
 
 export default class HatListesiPage extends React.Component {
@@ -27,6 +27,7 @@ export default class HatListesiPage extends React.Component {
                     style={styles.imageStyle}
                     source={require('../../images/loader.gif')} 
                 />
+                <Text style={styles.textStyle}>Yükleniyor...</Text>
             </View>
         </View>);
     }
@@ -42,4 +43,23 @@ export default class HatListesiPage extends React.Component {
         return this.renderLoading();
     }
 }
+
+const styles = StyleSheet.create({
+    containerStyle: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'stretch'
+    },
+    subContainerStyle: {
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    imageStyle: {
+        resizeMode: 'contain'
+    },
+    textStyle: {
+        marginTop: 10,
+        fontSize: 16
+    }
+});
 
