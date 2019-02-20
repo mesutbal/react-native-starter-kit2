@@ -1,19 +1,18 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- * @lint-ignore-every XPLATJSCOPYRIGHT1
- */
+import { Dimensions } from 'react-native';
+import { createDrawerNavigator, createAppContainer } from 'react-navigation';
+import HatListesiScreen from './src/screens/HatListesi/HatListesiScreen';
 
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
-
-export default class App extends Component {
-  render() {
-    return (
-      <View />
-    );
+const Drawer = createDrawerNavigator(
+  {
+    HatListesi: {
+      screen: HatListesiScreen
+    }
+  },
+  {
+    drawerWidth: Dimensions.get('window').width * 0.8
   }
-}
+);
+
+const App = createAppContainer(Drawer);
+
+export default App;
