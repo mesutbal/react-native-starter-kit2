@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, Text, StyleSheet } from 'react-native';
+import { View, Image, Text, StyleSheet, FlatList } from 'react-native';
 import axios from 'axios';
 
 export default class HatListesiPage extends React.Component {
@@ -16,7 +16,7 @@ export default class HatListesiPage extends React.Component {
     getHatListesi() {
         axios.post('https://bsmapi.burulas.com.tr/HatListesi')
         .then(response => {
-            console.log(response);
+            this.setState({ loaded: true, hat: response.data });
         });
     }
 
@@ -33,7 +33,14 @@ export default class HatListesiPage extends React.Component {
     }
 
     renderList() {
-
+        return (<FlatList
+            data={this.state.hat}
+            renderItem={(item) => {
+                return (<Text>{item.HatAdi}</Text>);
+            }}
+            keyExtractor={item => item.HatId}
+        />
+        );
     }
 
     render() {
