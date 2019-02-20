@@ -1,13 +1,14 @@
 import React from 'react';
 import { View } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
+import BurulasHeader from '../../components/headers/BurulasHeader';
 
 const HatListesiScreen = createStackNavigator(
     {
         Main: {
             screen: () => (<View style={{ flex: 1, backgroundColor: 'red' }} />),
-            navigationOptions: () => ({
-                title: 'Hat Listesi'
+            navigationOptions: ({ navigation }) => ({
+                header: () => (<BurulasHeader navigation={navigation} />)
             })
         }
     },

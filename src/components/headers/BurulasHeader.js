@@ -17,7 +17,7 @@ export default class BurulasHeader extends React.Component {
 const styles = StyleSheet.create({
     viewStyle: {
         width: '100%',
-        height: 87,
+        height: 60,
         backgroundColor: 'white',
         flexDirection: 'row',
         position: 'relative',
@@ -31,7 +31,11 @@ const styles = StyleSheet.create({
         elevation: 7
     },
     imageStyle: {
+        width: '45%',
         margin: 5,
-        resizeMode: 'contain'
+        top: 5,
+        height: 40,
+        resizeMode: 'contain',
+        flex: 1
     }
 });
