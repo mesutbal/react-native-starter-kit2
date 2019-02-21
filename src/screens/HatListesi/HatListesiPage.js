@@ -49,6 +49,7 @@ export default class HatListesiPage extends React.Component {
             />
             <FlatList
                 data={dataList}
+                keyboardShouldPersistTaps="always"
                 renderItem={({ item }) => {
                     return (<HatListesiCell hat={item} navigation={this.props.navigation} />);
                 }}

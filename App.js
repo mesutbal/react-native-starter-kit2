@@ -6,7 +6,10 @@ import HatListesiScreen from './src/screens/HatListesi/HatListesiScreen';
 const Drawer = createDrawerNavigator(
   {
     HatListesi: {
-      screen: HatListesiScreen
+      screen: HatListesiScreen,
+      navigationOptions: () => ({
+        title: 'Otobüsüm Nerede'
+    })
     }
   },
   {
