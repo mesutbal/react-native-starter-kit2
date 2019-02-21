@@ -8,7 +8,7 @@ export default class LoaderView extends React.Component {
             <View style={styles.subContainerStyle}>
                 <Image 
                     style={styles.imageStyle}
-                    source={require('../../images/loader.gif')} 
+                    source={require('../images/loader.gif')} 
                 />
                 <Text style={styles.textStyle}>Yükleniyor...</Text>
             </View>
