@@ -10,6 +10,9 @@ export default class HatDetayScreen extends React.Component {
     state = {
         data: {},
         duraklar: [],
+        duraklar2: [],
+        startLat: 40.1973248,
+        startLng: 29.0553856,
         loaded: false
     }
 
@@ -30,8 +33,28 @@ export default class HatDetayScreen extends React.Component {
             if (!this.state.loaded) {
                 this.otobusTimer = setInterval(() => { this.elapsed(); }, 5000);
             }
+            //Ring duraklar için düzenleme yapılacak
             const durak = response.data.sts[Object.keys(response.data.sts)[0]];
-            this.setState({ data: response.data, duraklar: durak, loaded: true });    
+            let durak2 = [];
+
+            console.log(Object.keys(response.data.sts));
+            if (Object.keys(response.data.sts).length > 1) {
+                console.log(response.data.sts[Object.keys(response.data.sts)[1]]);
+                durak2 = response.data.sts[Object.keys(response.data.sts)[1]];
+            }
+
+            if (!this.state.loaded) {
+                this.setState({ 
+                    data: response.data, 
+                    duraklar: durak, 
+                    duraklar2: durak2,
+                    loaded: true, 
+                    startLat: response.data.data[0].snappedLocation.Lat, 
+                    startLng: response.data.data[0].snappedLocation.Lng 
+                });    
+            } else {
+                this.setState({ data: response.data, loaded: true });     
+            }
         })
         .catch(error => {
             console.log(error);
@@ -65,8 +88,43 @@ export default class HatDetayScreen extends React.Component {
             />);
         }
     }
+    
+    renderCizim2() {
+        if (this.state.loaded && this.state.data.lrd.length > 1) {
+            const c = [];
+            this.state.data.lrd[1].tracks.map((track) => {
+                c.push({
+                    latitude: track.Lat,
+                    longitude: track.Lng
+                });
+                return null;
+            });
+            return (<Polyline 
+                coordinates={c}
+                strokeColor="green"
+                strokeWidth={5} 
+            />);
+        }
+    }
 
     renderDuraklar() {
+        return (this.state.duraklar.map((durak) => (<Marker 
+                key={durak.SID}
+                title={durak.SName}
+                description={durak.SCode}
+                coordinate={{
+                    latitude: durak.SLat,
+                    longitude: durak.SLng
+                }}
+        >
+            <Image 
+                source={require('../../images/marker-durak.png')} 
+                style={{ height: 26, width: 19, resizeMode: 'contain' }} 
+            />
+        </Marker>)));
+    }
+
+    renderDuraklar2() {
         return (this.state.duraklar.map((durak) => (<Marker 
                 key={durak.SID}
                 title={durak.SName}
@@ -116,8 +174,8 @@ export default class HatDetayScreen extends React.Component {
 
             camera={{
                 center: {
-                    latitude: 40.1973248,
-                    longitude: 29.0553856
+                    latitude: this.state.startLat,
+                    longitude: this.state.startLng
                 },
                 altitude: 2000,
                 zoom: 12,
@@ -126,6 +184,7 @@ export default class HatDetayScreen extends React.Component {
             }}
         >
         { this.renderCizim() }
+        { this.renderCizim2() }
         { this.renderDuraklar() }
         { this.renderOtobusler() }
         </MapView>);
