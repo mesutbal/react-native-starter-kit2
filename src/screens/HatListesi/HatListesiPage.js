@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Image, Text, StyleSheet, FlatList } from 'react-native';
 import axios from 'axios';
+import HatListesiCell from './HatListesiCell';
 
 export default class HatListesiPage extends React.Component {
 
@@ -36,7 +37,7 @@ export default class HatListesiPage extends React.Component {
         return (<FlatList
             data={this.state.hat}
             renderItem={(item) => {
-                return (<Text>{item.HatAdi}</Text>);
+                return (<HatListesiCell hat={item} />);
             }}
             keyExtractor={item => item.HatId}
         />
