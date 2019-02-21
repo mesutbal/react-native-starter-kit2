@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 export default class HatListesiCell extends Component {
+
+    detayEkranAc() {
+        this.props.navigation.navigate('Detay', { hat: this.props.hat });
+    }
+
     render() {
         const { viewStyle, textStyle } = styles;
         return (
-            <View style={viewStyle}>
+            <TouchableOpacity style={viewStyle} onPress={() => { this.detayEkranAc(); }}>
                 <View style={{ flex: 1, alignItems: 'center' }}>
                     <FontAwesome5
                         name='bus'
@@ -23,7 +28,7 @@ export default class HatListesiCell extends Component {
                         color='grey'
                     />
                 </View>
-            </View>
+            </TouchableOpacity>
         );
     }
 }

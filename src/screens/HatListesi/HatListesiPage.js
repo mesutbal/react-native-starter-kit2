@@ -36,10 +36,10 @@ export default class HatListesiPage extends React.Component {
     renderList() {
         return (<FlatList
             data={this.state.hat}
-            renderItem={(item) => {
-                return (<HatListesiCell hat={item} />);
+            renderItem={({ item }) => {
+                return (<HatListesiCell hat={item} navigation={this.props.navigation} />);
             }}
-            keyExtractor={item => item.HatId}
+            keyExtractor={item => `${item.HatId}`}
         />
         );
     }
