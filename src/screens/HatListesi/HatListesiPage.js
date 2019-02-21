@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Image, Text, StyleSheet, FlatList } from 'react-native';
 import axios from 'axios';
 import HatListesiCell from './HatListesiCell';
+import LoaderView from '../../components/LoaderView';
 
 export default class HatListesiPage extends React.Component {
 
@@ -22,15 +23,7 @@ export default class HatListesiPage extends React.Component {
     }
 
     renderLoading() {
-        return (<View style={styles.containerStyle}>
-            <View style={styles.subContainerStyle}>
-                <Image 
-                    style={styles.imageStyle}
-                    source={require('../../images/loader.gif')} 
-                />
-                <Text style={styles.textStyle}>Yükleniyor...</Text>
-            </View>
-        </View>);
+        return (<LoaderView />);
     }
 
     renderList() {
@@ -52,22 +45,5 @@ export default class HatListesiPage extends React.Component {
     }
 }
 
-const styles = StyleSheet.create({
-    containerStyle: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'stretch'
-    },
-    subContainerStyle: {
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    imageStyle: {
-        resizeMode: 'contain'
-    },
-    textStyle: {
-        marginTop: 10,
-        fontSize: 16
-    }
-});
+
 

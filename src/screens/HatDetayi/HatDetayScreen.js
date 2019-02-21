@@ -2,6 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import MapView from 'react-native-maps';
 import axios from 'axios';
+import LoaderView from '../../components/LoaderView';
 
 
 export default class HatDetayScreen extends React.Component {
@@ -16,6 +17,10 @@ export default class HatDetayScreen extends React.Component {
             console.log(response.data);
             this.setState({ data: response.data });    
         });
+    }
+
+    renderLoading() {
+        return (<LoaderView />);
     }
 
 
@@ -46,5 +51,6 @@ export default class HatDetayScreen extends React.Component {
             />
         </View>);
     }
+    
 }
 
