@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Alert, Image } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
+import MapView, { Marker, Polyline } from 'react-native-maps';
 import axios from 'axios';
 import LoaderView from '../../components/LoaderView';
 
@@ -46,6 +46,24 @@ export default class HatDetayScreen extends React.Component {
 
     renderLoading() {
         return (<LoaderView />);
+    }
+
+    renderCizim() {
+        if (this.state.loaded) {
+            const c = [];
+            this.state.data.lrd[0].tracks.map((track) => {
+                c.push({
+                    latitude: track.Lat,
+                    longitude: track.Lng
+                });
+                return null;
+            });
+            return (<Polyline 
+                coordinates={c}
+                strokeColor="red"
+                strokeWidth={5} 
+            />);
+        }
     }
 
     renderDuraklar() {
@@ -107,6 +125,7 @@ export default class HatDetayScreen extends React.Component {
                 heading: 1
             }}
         >
+        { this.renderCizim() }
         { this.renderDuraklar() }
         { this.renderOtobusler() }
         </MapView>);
