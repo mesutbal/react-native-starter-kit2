@@ -9,14 +9,28 @@ export default class HatDetayScreen extends React.Component {
 
     state = {
         data: {},
-        loaded: false
+        loaded: false,
+        timer: null
     }
 
     componentWillMount() {
+        this.refreshData();
+    }   
+
+    refreshData() {
         axios.get(`https://ulasimapi.burulas.com.tr/api/NetworkInfo/VehiclesPosition?code=${this.props.navigation.state.params.hat.HatAdi}`)
         .then(response => {
+            if (!this.state.loaded) {
+                const timer = setInterval(() => { this.elapsed(); }, 5000);
+                this.setState({ timer });
+            }
             this.setState({ data: response.data, loaded: true });    
         });
+    }
+
+    elapsed() {
+        console.log('elapsed');
+        this.refreshData();
     }
 
     renderLoading() {
