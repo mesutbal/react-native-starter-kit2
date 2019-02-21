@@ -9,22 +9,33 @@ export default class HatDetayScreen extends React.Component {
 
     state = {
         data: {},
-        loaded: false,
-        timer: null
+        duraklar: [],
+        loaded: false
     }
+
+    otobusTimer = {}
 
     componentWillMount() {
         this.refreshData();
     }   
 
+    componentWillUnmount() {
+        clearInterval(this.otobusTimer);
+    }
+
     refreshData() {
+        //timeout eklenecek
         axios.get(`https://ulasimapi.burulas.com.tr/api/NetworkInfo/VehiclesPosition?code=${this.props.navigation.state.params.hat.HatAdi}`)
         .then(response => {
             if (!this.state.loaded) {
-                const timer = setInterval(() => { this.elapsed(); }, 5000);
-                this.setState({ timer });
+                this.otobusTimer = setInterval(() => { this.elapsed(); }, 5000);
             }
-            this.setState({ data: response.data, loaded: true });    
+            const durak = response.data.sts[Object.keys(response.data.sts)[0]];
+            this.setState({ data: response.data, duraklar: durak, loaded: true });    
+        })
+        .catch(error => {
+            console.log(error);
+            Alert.alert('Burulaş App', 'Bağlantı sağlanamadı.');
         });
     }
 
@@ -35,6 +46,23 @@ export default class HatDetayScreen extends React.Component {
 
     renderLoading() {
         return (<LoaderView />);
+    }
+
+    renderDuraklar() {
+        return (this.state.duraklar.map((durak) => (<Marker 
+                key={durak.SID}
+                title={durak.SName}
+                description={durak.SCode}
+                coordinate={{
+                    latitude: durak.SLat,
+                    longitude: durak.SLng
+                }}
+        >
+            <Image 
+                source={require('../../images/marker-durak.png')} 
+                style={{ height: 26, width: 19, resizeMode: 'contain' }} 
+            />
+        </Marker>)));
     }
 
     renderOtobusler() {
@@ -79,6 +107,7 @@ export default class HatDetayScreen extends React.Component {
                 heading: 1
             }}
         >
+        { this.renderDuraklar() }
         { this.renderOtobusler() }
         </MapView>);
     }
