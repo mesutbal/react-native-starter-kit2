@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, Alert } from 'react-native';
-import MapView from 'react-native-maps';
+import { View, Alert, Image } from 'react-native';
+import MapView, { Marker } from 'react-native-maps';
 import axios from 'axios';
 import LoaderView from '../../components/LoaderView';
 
@@ -15,13 +15,30 @@ export default class HatDetayScreen extends React.Component {
     componentWillMount() {
         axios.get(`https://ulasimapi.burulas.com.tr/api/NetworkInfo/VehiclesPosition?code=${this.props.navigation.state.params.hat.HatAdi}`)
         .then(response => {
-            console.log(response.data);
-            this.setState({ data: response.data });    
+            this.setState({ data: response.data, loaded: true });    
         });
     }
 
     renderLoading() {
         return (<LoaderView />);
+    }
+
+    renderOtobusler() {
+        return (this.state.data.data.map((bus) => (<Marker 
+                key={bus.VehicleNo}
+                title={`${bus.LineCode} - ${bus.VehicleNo}`}
+                description={bus.lastGPSTime}
+                coordinate={{
+                    latitude: bus.snappedLocation.Lat,
+                    longitude: bus.snappedLocation.Lng
+                }}
+                //image={require('../../images/marker-otobus.png')}
+        >
+            <Image 
+                source={require('../../images/marker-otobus.png')} 
+                style={{ height: 44, width: 31, resizeMode: 'contain' }} 
+            />
+        </Marker>)));
     }
 
     renderMap() {
@@ -47,7 +64,9 @@ export default class HatDetayScreen extends React.Component {
                 pitch: 1,
                 heading: 1
             }}
-        />);
+        >
+        { this.renderOtobusler() }
+        </MapView>);
     }
 
     renderItem() {
