@@ -14,11 +14,10 @@ const HatListesiScreen = createStackNavigator(
         },
         Detay: {
             screen: () => (<HatDetayScreen />),
-            navigationOptions: () => ({
-                title: 'Hat Detayı',
-                /*headerBackTitle: 'Geri',
-                headerBackTitleVisible: true,
-                headerTruncatedBackTitle: 'Geri'*/
+            navigationOptions: ({ navigation }) => ({
+                title: `Hat - ${navigation.state.params.hat.HatAdi}`,
+                headerBackTitle: 'Geri', //Kontrol edilecek
+                headerTruncatedBackTitle: 'Geri'
             })
         }
     },
