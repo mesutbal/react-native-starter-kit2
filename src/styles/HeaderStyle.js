@@ -27,7 +27,7 @@ export const headerStyle = StyleSheet.create({
     },
     biletAlStyle: {
         position: 'absolute',
-        right: 10,
-        top: 15
+        right: 5,
+        top: 10
     }
 });

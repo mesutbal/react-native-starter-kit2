@@ -9,15 +9,14 @@ export default class BurulasHeader extends React.Component {
         const { viewStyle, imageStyle, biletAlStyle } = headerStyle;
         return (
         <View style={viewStyle}>
-            <View>
-                <Image 
-                    style={imageStyle}
-                    source={require('../../images/BurulasLogo.jpg')}
-                />
-            </View>
+            <Image 
+                style={imageStyle}
+                source={require('../../images/BurulasLogo.jpg')}
+            />
             <View style={biletAlStyle}>
                 <Entypo.Button 
-                    size={35}
+                    size={30}
+                    name="credit-card"
                     backgroundColor="transparent"
                     underlayColor="transparent"
                     color="gray"
