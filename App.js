@@ -3,6 +3,7 @@ import { createDrawerNavigator, createAppContainer } from 'react-navigation';
 import HatListesiScreen from './src/screens/HatListesi/HatListesiScreen';
 import DurakBilgisiScreen from './src/screens/DurakBilgisi/DurakBilgisiScreen';
 import CekGonderScreen from './src/screens/CekGonder/CekGonderScreen';
+import NeredeyimScreen from './src/screens/Neredeyim/NeredeyimScreen';
 
 
 const Drawer = createDrawerNavigator(
@@ -23,6 +24,12 @@ const Drawer = createDrawerNavigator(
       screen: CekGonderScreen,
       navigationOptions: () => ({
         title: 'Çek - Gönder'
+      })
+    },
+    Neredeyim: {
+      screen: NeredeyimScreen,
+      navigationOptions: () => ({
+        title: 'Neredeyim'
       })
     }
   },
