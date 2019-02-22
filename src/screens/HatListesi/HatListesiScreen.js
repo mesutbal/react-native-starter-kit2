@@ -3,6 +3,8 @@ import { createStackNavigator } from 'react-navigation';
 import BurulasHeader from '../../components/headers/BurulasHeader';
 import HatListesiPage from './HatListesiPage';
 import HatDetayScreen from '../HatDetayi/HatDetayScreen';
+import BiletAlScreen from '../BiletAl/BiletAlScreen';
+import QrScreen from '../BiletAl/QrScreen';
 
 const HatListesiScreen = createStackNavigator(
     {
@@ -26,6 +28,13 @@ const HatListesiScreen = createStackNavigator(
                 title: 'Bilet Al',
                 headerBackTitle: 'Geri', //Kontrol edilecek
                 headerTruncatedBackTitle: 'Geri'
+            })
+        },
+        KareKod: {
+            screen: ({ navigation }) => (<QrScreen navigation={navigation} />),
+            navigationOptions: () => ({
+                title: 'Bilet Bilgileriniz',
+                headerLeft: null
             })
         }
     },

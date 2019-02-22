@@ -36,3 +36,17 @@ export const headerStyle = StyleSheet.create({
         top: 10
     }
 });
+
+
+export const biletAlStyle = StyleSheet.create({
+    containerStyle: {
+        flex: 1,
+        padding: 25
+    },
+    textStyle: {
+        margin: 10
+    },
+    buttonStyle: {
+        margin: 10
+    }
+});

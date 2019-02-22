@@ -20,7 +20,7 @@ export default class BurulasHeader extends React.Component {
                     backgroundColor="transparent"
                     underlayColor="transparent"
                     color="gray"
-                    onPress={() => {}}
+                    onPress={() => { this.props.navigation.navigate('BiletAl'); }}
                 />
             </View>
             <View style={drawerStyle}>
