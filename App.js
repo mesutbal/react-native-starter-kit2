@@ -17,6 +17,12 @@ const Drawer = createDrawerNavigator(
       navigationOptions: () => ({
         title: 'Durak Bilgisi'
       })
+    },
+    CekGonder: {
+      screen: CekGonderScreen,
+      navigationOptions: () => ({
+        title: 'Çek - Gönder'
+      })
     }
   },
   {
