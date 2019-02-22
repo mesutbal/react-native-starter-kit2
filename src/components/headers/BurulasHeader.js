@@ -1,41 +1,29 @@
 import React from 'react';
-import { View, Image, StyleSheet } from 'react-native';
+import { View, Image } from 'react-native';
+import Entypo from 'react-native-vector-icons/Entypo';
+import { headerStyle } from '../../styles/HeaderStyle';
 
 export default class BurulasHeader extends React.Component {
 
     render() {
-        const { viewStyle, imageStyle } = styles;
-        return (<View style={viewStyle}>
-            <Image 
-                style={imageStyle}
-                source={require('../../images/BurulasLogo.jpg')}
-            />
+        const { viewStyle, imageStyle, biletAlStyle } = headerStyle;
+        return (
+        <View style={viewStyle}>
+            <View>
+                <Image 
+                    style={imageStyle}
+                    source={require('../../images/BurulasLogo.jpg')}
+                />
+            </View>
+            <View style={biletAlStyle}>
+                <Entypo.Button 
+                    size={35}
+                    backgroundColor="transparent"
+                    underlayColor="transparent"
+                    color="gray"
+                    onPress={() => {}}
+                />
+                </View>
         </View>);
     }
 }
-
-const styles = StyleSheet.create({
-    viewStyle: {
-        width: '100%',
-        height: 60,
-        backgroundColor: 'white',
-        flexDirection: 'row',
-        position: 'relative',
-        shadowColor: '#000',
-        shadowOffset: {
-            width: 0,
-            height: 3,
-        },
-        shadowOpacity: 0.29,
-        shadowRadius: 4.65,
-        elevation: 7
-    },
-    imageStyle: {
-        width: '45%',
-        margin: 5,
-        top: 5,
-        height: 40,
-        resizeMode: 'contain',
-        flex: 1
-    }
-});
