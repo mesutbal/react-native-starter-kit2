@@ -2,6 +2,7 @@ import { Dimensions } from 'react-native';
 import { createDrawerNavigator, createAppContainer } from 'react-navigation';
 import HatListesiScreen from './src/screens/HatListesi/HatListesiScreen';
 import DurakBilgisiScreen from './src/screens/DurakBilgisi/DurakBilgisiScreen';
+import CekGonderScreen from './src/screens/CekGonder/CekGonderScreen';
 
 
 const Drawer = createDrawerNavigator(

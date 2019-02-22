@@ -8,7 +8,7 @@ const CekGonderScreen = createStackNavigator(
         CekGonderMain: {
             screen: ({ navigation }) => (<CekGonderPage navigation={navigation} />),
             navigationOptions: ({ navigation }) => ({
-                header: () => (<BurulasHeader navigation={navigation} />)
+                header: () => (<BurulasHeader navigation={navigation} cekgonder/>)
             })
         }
     },

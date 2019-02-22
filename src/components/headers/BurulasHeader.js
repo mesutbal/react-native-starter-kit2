@@ -5,6 +5,30 @@ import { headerStyle } from '../../styles/HeaderStyle';
 
 export default class BurulasHeader extends React.Component {
 
+    renderIcon() {
+
+        if (this.props.cekgonder) {
+            return (<Entypo.Button 
+                size={30}
+                name="camera"
+                backgroundColor="transparent"
+                underlayColor="transparent"
+                color="gray"
+                onPress={() => { this.props.navigation.openDrawer(); }}
+            />);
+        }
+
+        return (<Entypo.Button 
+            size={30}
+            name="credit-card"
+            backgroundColor="transparent"
+            underlayColor="transparent"
+            color="gray"
+            onPress={() => { this.props.navigation.navigate('BiletAl'); }}
+        />);
+    }
+
+
     render() {
         const { viewStyle, imageStyle, biletAlStyle, drawerStyle } = headerStyle;
         return (
@@ -14,14 +38,7 @@ export default class BurulasHeader extends React.Component {
                 source={require('../../images/BurulasLogo.jpg')}
             />
             <View style={biletAlStyle}>
-                <Entypo.Button 
-                    size={30}
-                    name="credit-card"
-                    backgroundColor="transparent"
-                    underlayColor="transparent"
-                    color="gray"
-                    onPress={() => { this.props.navigation.navigate('BiletAl'); }}
-                />
+                { this.renderIcon() }
             </View>
             <View style={drawerStyle}>
                 <Entypo.Button 
