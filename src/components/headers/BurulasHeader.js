@@ -6,7 +6,7 @@ import { headerStyle } from '../../styles/HeaderStyle';
 export default class BurulasHeader extends React.Component {
 
     render() {
-        const { viewStyle, imageStyle, biletAlStyle } = headerStyle;
+        const { viewStyle, imageStyle, biletAlStyle, drawerStyle } = headerStyle;
         return (
         <View style={viewStyle}>
             <Image 
@@ -22,7 +22,17 @@ export default class BurulasHeader extends React.Component {
                     color="gray"
                     onPress={() => {}}
                 />
-                </View>
+            </View>
+            <View style={drawerStyle}>
+                <Entypo.Button 
+                    size={30}
+                    name="menu"
+                    backgroundColor="transparent"
+                    underlayColor="transparent"
+                    color="gray"
+                    onPress={() => { this.props.navigation.openDrawer(); }}
+                />
+            </View>
         </View>);
     }
 }

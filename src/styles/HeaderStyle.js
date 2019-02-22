@@ -29,5 +29,10 @@ export const headerStyle = StyleSheet.create({
         position: 'absolute',
         right: 5,
         top: 10
+    },
+    drawerStyle: {
+        position: 'absolute',
+        left: 5,
+        top: 10
     }
 });

@@ -19,6 +19,14 @@ const HatListesiScreen = createStackNavigator(
                 headerBackTitle: 'Geri', //Kontrol edilecek
                 headerTruncatedBackTitle: 'Geri'
             })
+        },
+        BiletAl: {
+            screen: ({ navigation }) => (<BiletAlScreen navigation={navigation} />),
+            navigationOptions: () => ({
+                title: 'Bilet Al',
+                headerBackTitle: 'Geri', //Kontrol edilecek
+                headerTruncatedBackTitle: 'Geri'
+            })
         }
     },
     {
