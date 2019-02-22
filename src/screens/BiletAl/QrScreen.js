@@ -7,7 +7,7 @@ import QRCode from 'react-native-qrcode';
 export default class QrScreen extends React.Component {
 
     state = {
-        data: 'http://www.bursa.bel.tr'
+        data: 'adsadasd sadsa dsad sadsadsadsad sadsadsadasd sad sad sadsa asd'
     }
 
     render() {

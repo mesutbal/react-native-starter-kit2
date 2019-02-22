@@ -9,7 +9,13 @@ const Drawer = createDrawerNavigator(
       screen: HatListesiScreen,
       navigationOptions: () => ({
         title: 'Otobüsüm Nerede'
-    })
+      })
+    },
+    DurakBilgisi: {
+      screen: DurakBilgisiScreen,
+      navigationOptions: () => ({
+        title: 'Durak Bilgisi'
+      })
     }
   },
   {
